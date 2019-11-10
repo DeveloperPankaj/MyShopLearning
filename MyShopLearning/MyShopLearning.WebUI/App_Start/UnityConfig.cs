@@ -2,6 +2,7 @@ using MyShopLearning.Core.Contracts;
 using MyShopLearning.Core.Models;
 using MyShopLearning.DataAccess.InMemory;
 using MyShopLearning.DataAccess.SQL;
+using MyShopLearning.Services;
 using System;
 
 using Unity;
@@ -48,6 +49,9 @@ namespace MyShopLearning.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>,SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
+            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }
