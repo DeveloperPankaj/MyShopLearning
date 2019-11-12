@@ -1,54 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyShopLearning.WebUI;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyShopLearning.Core.Contracts;
+using MyShopLearning.Core.Models;
+using MyShopLearning.Core.ViewModels;
 using MyShopLearning.WebUI.Controllers;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace MyShopLearning.WebUI.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
-        //[TestMethod]
-        //public void Index()
-        //{
-        //    // Arrange
-        //    HomeController controller = new HomeController();
+        [TestMethod]
+        public void IndexPageDoesReturnProducts()
+        {
+            IRepository<Product> productContext = new Mocks.MockContext<Product>();
+            IRepository<ProductCategory> productCategroyContext = new Mocks.MockContext<ProductCategory>();
+            HomeController controller = new HomeController(productContext, productCategroyContext);
 
-        //    // Act
-        //    ViewResult result = controller.Index() as ViewResult;// .Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
+            var viewModle = (ProductListViewModel)result.ViewData.Model;
 
-        //    // Assert
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void About()
-        //{
-        //    // Arrange
-        //    HomeController controller = new HomeController();
-
-        //    // Act
-        //    ViewResult result = controller.About() as ViewResult;
-
-        //    // Assert
-        //    Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        //}
-
-        //[TestMethod]
-        //public void Contact()
-        //{
-        //    // Arrange
-        //    HomeController controller = new HomeController();
-
-        //    // Act
-        //    ViewResult result = controller.Contact() as ViewResult;
-
-        //    // Assert
-        //    Assert.IsNotNull(result);
-        //}
+            Assert.AreEqual(1, viewModle.Products.Count());
+        }
     }
 }

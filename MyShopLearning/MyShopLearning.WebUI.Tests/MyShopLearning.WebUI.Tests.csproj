@@ -83,6 +83,7 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -93,6 +94,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyShopLearning.Core\MyShopLearning.Core.csproj">
+      <Project>{1BA818BA-65A6-4310-9A98-A59B7DDF6168}</Project>
+      <Name>MyShopLearning.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyShopLearning.WebUI\MyShopLearning.WebUI.csproj">
       <Project>{C62B6CED-2811-4958-AEE8-0FDED83781B5}</Project>
       <Name>MyShopLearning.WebUI</Name>
